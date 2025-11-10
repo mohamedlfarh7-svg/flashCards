@@ -29,7 +29,7 @@
       background-color: #f3f3f3;
     }
     .box1 {
-      box-shadow: 2px 2px 2px rgb(229, 12, 52);
+      border: 2px red solid !important;
       padding: 5px 15px;
       cursor: pointer;
       margin-bottom: 10px;
@@ -40,8 +40,8 @@
       transition: .10s;
     }
     .box1:hover {
-      box-shadow: 0 0 3px 1px rgb(193, 177, 179);
-      background-color: rgb(255, 0, 38) ;
+      box-shadow: 0 0 3px 1px rgb(193, 177, 179) !important;
+      background-color: rgb(255, 0, 38) !important;
       color: white ;
     }
     .box2 {
@@ -159,11 +159,16 @@ let score = 0;
 
 function quiz() {
   questionEl.textContent = questions[current].title;
+
   optBlocks.forEach((block, i) => {
     block.querySelector('.box2').textContent = questions[current].answer[i];
+    block.style.backgroundColor = "transparent";  
+    block.style.pointerEvents = "auto"; 
     nextBtn.style.display = 'none';
 
     block.onclick = () => {
+      optBlocks.forEach(b => b.style.pointerEvents = "none");
+
       if(i === answers[current]){
         block.style.backgroundColor = 'green';
         nextBtn.style.display = 'flex';
@@ -172,17 +177,11 @@ function quiz() {
         block.style.backgroundColor = 'red';
         document.querySelector('.box').style.display = 'none';
         document.querySelector('.win').style.display = 'block';
-
-        tryagain.onclick = () => {
-          document.querySelector('.win').style.display = 'none';
-          document.querySelector('.box').style.display = 'block';
-          quiz(); 
-        };
       }
+
     };
   });
 }
-
 nextBtn.addEventListener('click', () => {
   current++;
   if(current < questions.length){
@@ -195,6 +194,11 @@ nextBtn.addEventListener('click', () => {
     resultEl.textContent = `Your score: ${score} / ${questions.length}`;
   }
 });
+ tryagain.onclick = () => {
+          document.querySelector('.win').style.display = 'none';
+          document.querySelector('.box').style.display = 'block';
+          quiz(); 
+        };
 
 quiz();
 </script>
