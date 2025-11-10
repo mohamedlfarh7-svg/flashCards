@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Quiz with Result</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: Verdana, Geneva, Tahoma, sans-serif;
+    }
+    form {
+      margin-top: 50px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+    }
+    .box {
+      padding: 15px;
+      min-width: 450px;
+      max-width: 500px;
+      height: auto;
+      box-shadow: 2px 2px 3px 2px rgb(255, 0, 0);
+      border-radius: 10px;
+      background-color: #f3f3f3;
+    }
+    .box1 {
+      box-shadow: 2px 2px 2px rgb(229, 12, 52);
+      padding: 5px 15px;
+      cursor: pointer;
+      margin-bottom: 10px;
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      background-color: transparent ;
+      transition: .10s;
+    }
+    .box1:hover {
+      box-shadow: 0 0 3px 1px rgb(193, 177, 179);
+      background-color: rgb(255, 0, 38) ;
+      color: white ;
+    }
+    .box2 {
+      margin-left: 10px;
+    }
+    .nxt {
+      display: none;
+      align-items: center;
+      justify-content: center;
+      width: 150px;
+      height: 50px;
+      cursor: pointer;
+      box-shadow: 2px 2px 4px 2px gray;
+      border-radius: 10px;
+      background: linear-gradient(to left, cyan, magenta);
+      margin-top: 15px;
+    }
+    .nxt:active {
+      transform: scale(0.9);
+    }
+    .win {
+      display: none;
+      text-align: center;
+    }
+    .win h1 {
+      font-family: cursive, Verdana, Geneva, Tahoma, sans-serif;
+      margin: 15px;
+      font-weight: bold;
+      color: red;
+    }
+    .btn-nxt {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 120px;
+      height: 40px;
+      margin: auto;
+      background: linear-gradient(to right, red, pink);
+      border-radius: 8px;
+      cursor: pointer;
+    }
+    .btn-nxt:hover {
+      opacity: 0.8;
+    }
+    .result {
+      display: none;
+      margin-top: 20px;
+      text-align: center;
+      font-size: 1.5rem;
+      font-weight: bold;
+      color: green;
+    }
+  </style>
+</head>
+<body>
+  <nav class="bg-red-600 flex justify-between items-center px-6 py-3">
+    <h2 class="text-white font-bold text-xl">Quiz App</h2>
+    <a href="index.html" class="bg-red-700 text-white font-semibold px-4 py-2 rounded-lg hover:bg-red-800 transition">Back to Home</a>
+  </nav>
+
+  <form>
+    <h1 class="font-bold text-2xl text-red-600 pb-5">Quiz App</h1>
+
+    <div class="win">
+      <h1>Sorry! Wrong answer</h1>
+      <div class="btn-nxt">Try Again</div>
+    </div>
+
+    <div class="box">
+      <div class="ques p-1 mb-5">
+        <h3 id="ques" class="text-center text-lg font-semibold"></h3>
+      </div>
+      <div class="answ p-1">
+        <div class="box1"> A: <p class="box2"></p></div>
+        <div class="box1"> B: <p class="box2"></p></div>
+        <div class="box1"> C: <p class="box2"></p></div>
+        <div class="box1"> D: <p class="box2"></p></div>
+      </div>
+      <div id="nxt" class="nxt">Next</div>
+    </div>
+
+    <div class="result" id="result"></div>
+  </form>
+
+<script>
+const questions = [
+  {title:"What does the <p> tag define?", 
+    answer:["A paragraph","A picture","A link","A heading"]},
+  {title:"Which tag is used to create a hyperlink?",
+   answer:["<link>","<a>","<href>","<url>"]},
+  {title:"Which HTML element is used to display an image?", 
+  answer:["<photo>","<src>","<picture>","<img>"]},
+  {title:"Which tag is used for the largest heading?",
+   answer:["<h6>","<header>","<h1>","<head>"]},
+  {title:"Which attribute specifies an image source in HTML?", 
+  answer:["href","path","link","src"]},
+  {title:"Which element is used to make text italic?", 
+  answer:["<strong>","<em>","<i>","<b>"]},
+  {title:"What does the <ul> element represent?",
+  answer:["An ordered list","An unordered list","A table","A paragraph"]},
+  {title:"Which tag is used to insert a line break?", 
+  answer:["<hr>","<p>","<lb>","<br>"]}
+];
+
+const answers = [0,1,3,2,3,2,1,3];
+
+const questionEl = document.querySelector('#ques');
+const nextBtn = document.querySelector('#nxt');
+const optBlocks = document.querySelectorAll('.box1');
+const tryagain = document.querySelector('.btn-nxt');
+const resultEl = document.querySelector('#result');
+
+let current = 0;
+let score = 0;
+
+function quiz() {
+  questionEl.textContent = questions[current].title;
+  optBlocks.forEach((block, i) => {
+    block.querySelector('.box2').textContent = questions[current].answer[i];
+    nextBtn.style.display = 'none';
+
+    block.onclick = () => {
+      if(i === answers[current]){
+        block.style.backgroundColor = 'green';
+        nextBtn.style.display = 'flex';
+        score++; 
+      } else {
+        block.style.backgroundColor = 'red';
+        document.querySelector('.box').style.display = 'none';
+        document.querySelector('.win').style.display = 'block';
+
+        tryagain.onclick = () => {
+          document.querySelector('.win').style.display = 'none';
+          document.querySelector('.box').style.display = 'block';
+          quiz(); 
+        };
+      }
+    };
+  });
+}
+
+nextBtn.addEventListener('click', () => {
+  current++;
+  if(current < questions.length){
+    quiz();
+  } else {
+    questionEl.textContent = "Quiz Finished!";
+    document.querySelector('.answ').style.display = 'none';
+    nextBtn.style.display = 'none';
+    resultEl.style.display = 'block';
+    resultEl.textContent = `Your score: ${score} / ${questions.length}`;
+  }
+});
+
+quiz();
+</script>
+
+</body>
+</html>
