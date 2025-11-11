@@ -82,6 +82,7 @@
       background: linear-gradient(to right, red, pink);
       border-radius: 8px;
       cursor: pointer;
+      transition: all 0.3 ease;
     }
     .btn-nxt:hover {
       opacity: 0.8;
@@ -171,6 +172,7 @@ function quiz() {
 
       if(i === answers[current]){
         block.style.backgroundColor = 'green';
+        block.style.border = 'solid 2px green';
         nextBtn.style.display = 'flex';
         score++; 
       } else {

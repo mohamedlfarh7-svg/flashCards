@@ -3,19 +3,46 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <link rel="stylesheet" href="src/output.css">
     <title>cards</title>
-    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+   <style>
+        @media (min-width:600px){
+            #menu-btn{
+                display: none;
+            }
+            #menu{
+                display: flex !important;
+                position: static;
+                width: auto;
+                background: none;
+                border: none;
+                gap: 20px;
+
+            }
+            #menu li:hover {
+                background-color: transparent !important;
+                
+            }
+            #menu li a {
+                border-bottom: 2px solid transparent;
+                transition: all 1s ease;
+            }
+            #menu li a:hover {
+                border-bottom: 2px solid white;
+      }
+        }
+   </style>
 <body>
     <nav class="bg-red-600 flex justify-between">
-        <h2 class="p-3 text-white font-bold">CARDS</h2>
-        <button class="p-3 text-white font-bold cursor-pointer" onmouseover="menu.hidden^=1">☰</button>
-        <ul id="menu" hidden class="grid top-10 left-0  fixed bg-red-600 w-full text-center pb-2  ">
-            <li><a href=""class="p-3 text-white font-bold">Home</a> </li>
-            <li><a href=""class="p-3 text-white font-bold ">About</a> </li>
-            <li><a href=""class="p-3 text-white font-bold ">Contact</a> </li>
+        <h2 class="p-3 text-white font-bold cursor-pointer text-shadow-2xs">CARDS</h2>
+        <button id="menu-btn" class="p-3 text-white font-bold cursor-pointer" onclick="menu.hidden^=1">☰</button>
+        <ul id="menu" hidden class="top-10 left-0  fixed bg-red-600 w-full text-center ">
+            <li class="border-b-2 border-b-red-500 p-3 hover:bg-red-700"><a href=""class=" text-white font-bold ">Home</a> </li>
+            <li class="border-b-2 border-b-red-500 p-3 hover:bg-red-700"><a href=""class=" text-white font-bold ">About</a> </li>
+            <li class="p-3 hover:bg-red-700"><a href=""class=" text-white font-bold ">Contact</a> </li>
         </ul>
     </nav>
-    <section>
+    <section id="section">
         <div>
             <h1 class="text-3xl font-bold  text-center m-5 text-red-700">Welcome to Cards</h1>
             <p class="text-center m-5">
@@ -23,14 +50,40 @@
                 facilement grâce à vos flashcards et quiz interactifs
             </p>
         </div>
+        <div class="flex justify-center m-5 gap-5">
+            <button  class="bg-red-600 text-white font-bold py-2 px-4 rounded-2xl hover:bg-red-700"><a href="flashCards.html">Accéder à Flashcards</a></button>
+            <button  class="bg-red-600 text-white font-bold py-2 px-4 rounded-2xl hover:bg-red-700 "><a href="quiz.html">Accéder aux Quiz</a></button>
+        </div>
     </section>
-    <div class="flex justify-center m-5 gap-5">
-        <button  class="bg-red-600 text-white font-bold py-2 px-4 rounded-2xl hover:bg-red-700"><a href="flashCards.html">Accéder à Flashcards</a></button>
-        <button  class="bg-red-600 text-white font-bold py-2 px-4 rounded-2xl hover:bg-red-700 "><a href="quiz.html">Accéder aux Quiz</a></button>
-    </div>
+    
     <footer class="bg-red-600 text-white text-center py-4 absolute bottom-0 w-screen">
         <p class="text-sm">&copy; 2025 Flashcards App — All Rights Reserved</p>
         <p class="text-xs mt-1">Created by <span class="font-semibold">Lfarh</span> </p>
     </footer>  
+    <script>
+        const menuBtn = document.getElementById('menu-btn');
+        const section = document.getElementById('section');
+        const menu = document.getElementById('menu');
+
+        menuBtn.addEventListener('click', () => {
+            if (!menu.hidden) {
+                section.style.marginTop = '180px';
+            } else {
+                section.style.marginTop = '0';
+            }
+        });
+        function checkScreenSize() {
+            if (window.innerWidth >= 600) {
+                menu.hidden = false;
+                section.style.marginTop = '0';
+            } else {
+                menu.hidden = true;
+            }
+        }
+
+        checkScreenSize();
+        window.addEventListener('resize', checkScreenSize);
+
+    </script>
 </body>
 </html>
