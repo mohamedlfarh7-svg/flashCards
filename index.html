@@ -31,24 +31,40 @@
                 border-bottom: 2px solid white;
       }
         }
+        @media(max-width:767px){
+          #section{
+            display: flex;
+            justify-content: center;
+            justify-self: center;
+            justify-items: center;
+          }
+          #btns {
+            display: flex;
+            justify-content: center;
+            justify-self: center;
+            justify-items: center;
+          }
+          li{
+            border-top:3px solid rgb(150, 13, 13) ;
+          }
+        }
    </style>
 <body>
-    <nav class="bg-red-600 flex justify-between">
+    <nav class="bg-red-600 flex  justify-between p-3 relative">
         <h2 class="p-3 text-white font-bold cursor-pointer text-shadow-2xs">CARDS</h2>
         <button id="menu-btn" class="p-3 text-white font-bold cursor-pointer" onclick="menu.hidden^=1">☰</button>
-        <ul id="menu" hidden class="top-10 left-0 fixed  bg-red-600 w-full text-center ">
-            <li class="border-b-2 border-b-red-500 p-3 hover:bg-red-700"><a href=""class=" text-white font-bold ">Home</a> </li>
-            <li class="border-b-2 border-b-red-500 p-3 hover:bg-red-700"><a href="#about"class=" text-white font-bold ">About</a> </li>
+        <ul id="menu" hidden class="top-full left-0 absolute  bg-red-600 w-full text-center ">
+            <li  class=" border-b-red-500 p-3 hover:bg-red-700"><a href=""class=" text-white font-bold ">Home</a> </li>
+            <li class=" border-b-red-500 p-3 hover:bg-red-700"><a href="#about"class=" text-white font-bold ">About</a> </li>
             <li class="p-3 hover:bg-red-700"><a href="#contact"class=" text-white font-bold ">Contact</a> </li>
         </ul>
     </nav>
-<!-- Welcome Section -->
-<section id="section" class="bg-gradient-to-r from-red-600 to-red-500 py-20">
+
+<section id="section" class="bg-red-800 p-10">
   <div class="max-w-5xl mx-auto px-4 flex flex-col md:flex-row items-center justify-between gap-10">
-    <!-- Text -->
     <div class="text-center md:text-left md:w-1/2">
       <h1 class="text-4xl md:text-5xl font-bold text-white mb-4">Welcome to Cards</h1>
-      <p class="text-white text-lg mb-8">
+      <p class="text-white text-lg mb-8 text-center">
         Learn and revise easily with interactive flashcards and quizzes.  
         Our platform makes studying efficient and fun!
       </p>
@@ -61,19 +77,17 @@
         </a>
       </div>
     </div>
-    <!-- Optional Illustration -->
     <div class="md:w-1/2">
-      <img src="Online-quiz-3-1080x675.jpg" alt="Learning illustration" class="rounded-full shadow-lg mx-auto">
+      <img src="Online-quiz-3-1080x675.jpg" class="rounded-full shadow-lg mx-auto">
     </div>
   </div>
 </section>
 
-<!-- About Us Section -->
 <section id="about" class="bg-gray-50 py-20">
   <div class="max-w-5xl mx-auto px-4 grid md:grid-cols-2 gap-10 items-center">
-    <img src="img.jpg" alt="About illustration" class="rounded-2xl shadow-lg">
+    <img src="img.jpg"  class="rounded-2xl shadow-lg ">
     <div>
-      <h2 class="text-3xl md:text-4xl font-bold text-red-600 mb-4">About Us</h2>
+      <h2 class="text-3xl md:text-4xl font-bold text-red-600 mb-4 text-center">About Us</h2>
       <p class="text-gray-700 mb-4 text-base">
         We are passionate about helping learners improve and retain knowledge efficiently.  
         Our platform offers interactive flashcards and quizzes to make learning engaging and fun.
@@ -82,11 +96,11 @@
         Our mission is to provide an easy-to-use tool for students, professionals, and anyone eager to learn.  
         Study anywhere, anytime, at your own pace.
       </p>
-      <div class="flex flex-wrap gap-4">
+      <div id="btns" class="flex gap-4">
         <button class="bg-red-600 text-white font-bold py-2 px-6 rounded-2xl hover:bg-red-700 transition duration-300">
           Learn More
         </button>
-        <button class="bg-white text-red-600 font-bold py-2 px-6 rounded-2xl hover:bg-red-100 transition duration-300">
+        <button class="bg-red-200 text-red-600  font-bold py-2 px-6 rounded-2xl hover:bg-red-100 transition duration-300">
           Get Started
         </button>
       </div>
@@ -94,25 +108,35 @@
   </div>
 </section>
 
-<!-- Contact Us Section -->
-<section id="contact" class="bg-red-600 py-20">
+<section id="contact" class="bg-red-700 py-20">
   <div class="max-w-3xl mx-auto px-4">
     <h2 class="text-3xl md:text-4xl font-bold text-white text-center mb-6">Contact Us</h2>
     <p class="text-white text-center mb-10 text-base">
       Have questions or need help? Reach out to us below:
     </p>
-    <form class="grid gap-6 bg-red-700 p-8 rounded-2xl shadow-lg">
-      <input type="email" placeholder="Your email" class="p-3 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-white" required>
-      <textarea placeholder="Your message" rows="5" class="p-3 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-white" required></textarea>
-      <button type="submit" class="bg-white text-red-600 font-bold py-3 rounded-xl hover:bg-red-100 transition duration-300">
-        Send Message
-      </button>
+    <form class="grid gap-6 bg-red-600 p-8 rounded-2xl shadow-lg">
+<input 
+    type="email" 
+    placeholder="Your email" 
+    class="w-full p-3 mb-4 rounded-xl bg-white/20 text-white placeholder-gray-300 outline-none focus:ring-2 focus:ring-pink-400 transition"
+    required>
+  
+  <textarea 
+    placeholder="Your message" 
+    rows="5" 
+    class="w-full p-3 mb-4 rounded-xl bg-white/20 text-white placeholder-gray-300 outline-none focus:ring-2 focus:ring-pink-400 transition"
+    required></textarea>
+  
+  <button 
+    type="submit" 
+    class="w-full py-3 rounded-xl bg-pink-500 hover:bg-pink-600 text-white font-semibold shadow-md transition duration-300">
+    Send Message
+  </button>
     </form>
   </div>
 </section>
 
-<!-- Footer -->
-<footer class="bg-red-700 text-white text-center py-6">
+<footer class="bg-red-600 text-white text-center py-4">
   <p class="text-sm">&copy; 2025 Flashcards App — All Rights Reserved</p>
   <p class="text-xs mt-1">Created by <span class="font-semibold">Lfarh</span></p>
 </footer>
@@ -125,10 +149,12 @@
 
         menuBtn.addEventListener('click', () => {
             if (!menu.hidden) {
-                section.style.marginTop = '180px';
+                section.style.marginTop = '140px';
             } else {
                 section.style.marginTop = '0';
             }
+
+           
         });
         function checkScreenSize() {
             if (window.innerWidth >= 600) {

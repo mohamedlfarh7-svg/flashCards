@@ -106,45 +106,45 @@ const question = document.getElementById('question');
             showCards();
         };
 
-        // function showCards() {
-        //     wrapper.innerHTML = '';
+        function showCards() {
+            wrapper.innerHTML = '';
 
-        //     if (cards.length === 0) {
-        //         wrapper.style.display = "none";
-        //         return;
-        //     }
+            if (cards.length === 0) {
+                wrapper.style.display = "none";
+                return;
+            }
 
-        //     wrapper.style.display = "flex";
-        //     const deleteAll = document.getElementById('deleteAllCards')
-        //     if(cards.length>0){
-        //         deleteAll.innerHTML=`
-        //                 <button onclick="deleteAll()"class="deletAll">deleteAll</button>
-        //         `
-        //     }else{
-        //         deleteAll.innerHTML='';
-        //    }
+            wrapper.style.display = "flex";
+            const deleteAll = document.getElementById('deleteAllCards')
+            if(cards.length>0){
+                deleteAll.innerHTML=`
+                        <button onclick="deleteAll()"class="deletAll">deleteAll</button>
+                `
+            }else{
+                deleteAll.innerHTML='';
+           }
 
-        //     for (let i = 0; i < cards.length; i++) {
-        //         if (cards[i].collection !== currentCollection) continue;
-        //         const cardHTML = `
-        //             <div class="card">
-        //                 <div class="front">
-        //                     <div class="card-info">
-        //                         <h2>${cards[i].frontQuestion}</h2>
-        //                     </div>
-        //                 </div>
-        //                 <div class="back">
-        //                     <div class="card-content">
-        //                         <p>${cards[i].backReponse}</p>
-        //                         <button onclick="deleteCard(${i})" class="card-btn">delete</button>
-        //                     </div>
-        //                 </div>
-        //             </div>
-        //         `;
-        //         wrapper.innerHTML += cardHTML;
-        //     }
-        // };
- 
+            for (let i = 0; i < cards.length; i++) {
+                if (cards[i].collection !== currentCollection) continue;
+                const cardHTML = `
+                    <div class="card">
+                        <div class="front">
+                            <div class="card-info">
+                                <h2>${cards[i].frontQuestion}</h2>
+                            </div>
+                        </div>
+                        <div class="back">
+                            <div class="card-content">
+                                <p>${cards[i].backReponse}</p>
+                                <button onclick="deleteCard(${i})" class="card-btn">delete</button>
+                            </div>
+                        </div>
+                    </div>
+                `;
+                wrapper.innerHTML += cardHTML;
+            }
+        };
+
         function deleteCard(i){
             cards.splice(i,1);
             localStorage.cardes = JSON.stringify(cards);

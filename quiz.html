@@ -4,100 +4,99 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Quiz with Result</title>
-  li
-  <style>
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-      font-family: Verdana, Geneva, Tahoma, sans-serif;
-    }
-    form {
-      margin-top: 50px;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      flex-direction: column;
-    }
-    .box {
-      padding: 15px;
-      min-width: 450px;
-      max-width: 500px;
-      height: auto;
-      box-shadow: 2px 2px 3px 2px rgb(255, 0, 0);
-      border-radius: 10px;
-      background-color: #f3f3f3;
-    }
-    .box1 {
-      border: 2px red solid !important;
-      padding: 5px 15px;
-      cursor: pointer;
-      margin-bottom: 10px;
-      border-radius: 10px;
-      display: flex;
-      align-items: center;
-      background-color: transparent ;
-      transition: .10s;
-    }
-    .box1:hover {
-      box-shadow: 0 0 3px 1px rgb(193, 177, 179) !important;
-      background-color: rgb(255, 0, 38) !important;
-      color: white ;
-    }
-    .box2 {
-      margin-left: 10px;
-    }
-    .nxt {
-      display: none;
-      align-items: center;
-      justify-content: center;
-      width: 150px;
-      height: 50px;
-      cursor: pointer;
-      box-shadow: 2px 2px 4px 2px gray;
-      border-radius: 10px;
-      background: linear-gradient(to left, cyan, magenta);
-      margin-top: 15px;
-    }
-    .nxt:active {
-      transform: scale(0.9);
-    }
-    .win {
-      display: none;
-      text-align: center;
-    }
-    .win h1 {
-      font-family: cursive, Verdana, Geneva, Tahoma, sans-serif;
-      margin: 15px;
-      font-weight: bold;
-      color: red;
-    }
-    .btn-nxt {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      width: 120px;
-      height: 40px;
-      margin: auto;
-      background: linear-gradient(to right, red, pink);
-      border-radius: 8px;
-      cursor: pointer;
-      transition: all 0.3 ease;
-    }
-    .btn-nxt:hover {
-      opacity: 0.8;
-    }
-    .result {
-      display: none;
-      margin-top: 20px;
-      text-align: center;
-      font-size: 1.5rem;
-      font-weight: bold;
-      color: green;
-    }
-  </style>
+  <link rel="stylesheet" href="src/output.css">
+    <style>
+      * {
+        box-sizing: border-box;
+        margin: 0;
+        font-family: Verdana, Geneva, Tahoma, sans-serif;
+      }
+      form {
+        margin-top: 50px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+      }
+      .box {
+        padding: 15px;
+        min-width: 450px;
+        max-width: 500px;
+        height: auto;
+        box-shadow: 2px 2px 3px 2px rgb(255, 0, 0);
+        border-radius: 10px;
+        background-color: #f3f3f3;
+      }
+      .box1 {
+        border: 2px red solid !important;
+        padding: 5px 15px;
+        cursor: pointer;
+        margin-bottom: 10px;
+        border-radius: 10px;
+        display: flex;
+        align-items: center;
+        background-color: transparent ;
+        transition: .10s;
+      }
+      .box1:hover {
+        box-shadow: 0 0 3px 1px rgb(193, 177, 179) !important;
+        background-color: rgb(255, 0, 38) !important;
+        color: white ;
+      }
+      .box2 {
+        margin-left: 10px;
+      }
+      .nxt {
+        display: none;
+        align-items: center;
+        justify-content: center;
+        width: 150px;
+        height: 50px;
+        cursor: pointer;
+        box-shadow: 2px 2px 4px 2px gray;
+        border-radius: 10px;
+        background: linear-gradient(to left, cyan, magenta);
+        margin-top: 15px;
+      }
+      .nxt:active {
+        transform: scale(0.9);
+      }
+      .win {
+        display: none;
+        text-align: center;
+      }
+      .win h1 {
+        font-family: cursive, Verdana, Geneva, Tahoma, sans-serif;
+        margin: 15px;
+        font-weight: bold;
+        color: red;
+      }
+      .btn-nxt {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 120px;
+        height: 40px;
+        margin: auto;
+        background: linear-gradient(to right, red, pink);
+        border-radius: 8px;
+        cursor: pointer;
+        transition: all 0.3 ease;
+      }
+      .btn-nxt:hover {
+        opacity: 0.8;
+      }
+      .result {
+        display: none;
+        margin-top: 20px;
+        text-align: center;
+        font-size: 1.5rem;
+        font-weight: bold;
+        color: green;
+      }
+    </style>
 </head>
-<body>
+<body class="p-0 m-0">
   <nav class="bg-red-600 flex justify-between items-center px-6 py-3">
     <h2 class="text-white font-bold text-xl">Quiz App</h2>
     <a href="index.html" class="bg-red-700 text-white font-semibold px-4 py-2 rounded-lg hover:bg-red-800 transition">Back to Home</a>
@@ -155,6 +154,7 @@ const optBlocks = document.querySelectorAll('.box1');
 const tryagain = document.querySelector('.btn-nxt');
 const resultEl = document.querySelector('#result');
 
+
 let current = 0;
 let score = 0;
 
@@ -201,7 +201,6 @@ nextBtn.addEventListener('click', () => {
           document.querySelector('.box').style.display = 'block';
           quiz(); 
         };
-
 quiz();
 </script>
 
